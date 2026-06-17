@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: connect
+  namespace: cdc
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: connect
+  template:
+    metadata:
+      labels:
+        app: connect
+    spec:
+      containers:
+        - name: connect
+          image: debezium/connect:2.5
+          ports:
+            - containerPort: 8083
+          env:
+            - name: BOOTSTRAP_SERVERS
+              value: kafka.cdc.svc.cluster.local:9092
+              # Alternatively: kafka-0.kafka.cdc.svc.cluster.local:9092
+
+            - name: GROUP_ID
+              value: "1"
+
+            - name: CONFIG_STORAGE_TOPIC
+              value: connect_configs
+
+            - name: OFFSET_STORAGE_TOPIC
+              value: connect_offsets
+
+            - name: STATUS_STORAGE_TOPIC
+              value: connect_status
+
+            - name: MSSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: mssql-user
+
+            - name: MSSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: mssql-password
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8083
+            initialDelaySeconds: 40
+            periodSeconds: 20
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8083
+            initialDelaySeconds: 20
+            periodSeconds: 10
