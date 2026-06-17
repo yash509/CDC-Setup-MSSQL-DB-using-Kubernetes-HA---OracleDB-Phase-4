@@ -1,0 +1,12 @@
+(This is optional as this can block ALL traffic and system can fail)
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: cdc-restrict
+  namespace: cdc
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
