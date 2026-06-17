@@ -1,0 +1,5 @@
+The below will be used through the Postman for checking the status of the MSSQL DB connector i.e., "mssql-connector" as a "GET" method in the Postman 
+URL = "http://localhost:8083/connectors/mssql-connector/status"
+
+
+The status of the whole "mssql-connector" connector will be checked through the following URL only "http://localhost:8083/connectors/mssql-connector/status" by hitting it on the Postman

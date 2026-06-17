@@ -1,0 +1,5 @@
+The below will be used through the Postman for doing the restart of the Oracle DB connector i.e., "oracle-sink" as a "POST" method in the Postman 
+URL = "http://localhost:8083/connectors/oracle-sink/restart"
+
+
+This is used to restart the whole "oracle-sink" connector will be done through the following URL only "http://localhost:8083/connectors/oracle-sink/restart" by hitting it on the Postman

@@ -1,0 +1,5 @@
+The below will be used through the Postman for doing the restart of the MSSQL DB connector i.e., "mssql-connector" as a "POST" method in the Postman 
+URL = "http://localhost:8083/connectors/mssql-connector/restart"
+
+
+This is used to restart the whole "mssql-connector" connector will be done through the following URL only "http://localhost:8083/connectors/mssql-connector/restart" by hitting it on the Postman

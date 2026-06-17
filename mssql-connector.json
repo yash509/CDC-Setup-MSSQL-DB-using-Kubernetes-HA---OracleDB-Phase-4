@@ -1,0 +1,23 @@
+The below will be used through the Postman for making the connection to the MSSQL DB as a "POST" method in the Postman
+URL = "http://localhost:8083/connectors"
+
+{
+    "name": "mssql-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
+        "tasks.max": "1",
+        "database.hostname": "host.docker.internal",
+        "database.port": "1433", 
+        "database.user": "root", 
+        "database.password": "Root@123",
+        "database.names": "testdb",
+        "topic.prefix": "mssql",
+        "table.include.list": "dbo.Employees, dbo.Departments, dbo.EmployeeDepartments", 
+        "schema.history.internal.kafka.bootstrap.servers": "kafka:9092",
+        "schema.history.internal.kafka.topic": "schema-history.mssql",
+        "include.schema.changes": "true",
+        "snapshot.mode": "initial",
+        "database.encrypt": "true",
+        "database.trustServerCertificate": "true"
+    }
+}

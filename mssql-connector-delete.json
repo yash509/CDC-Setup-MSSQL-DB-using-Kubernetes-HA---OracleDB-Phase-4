@@ -1,0 +1,5 @@
+The below will be used through the Postman for deleting the currect pipeline of the MSSQL DB connector i.e., "mssql-connector" as a "DELETE" method in the Postman 
+URL = "http://localhost:8083/connectors/mssql-connector"
+
+
+The deletion of the pipeline of the whole "mssql-connector" connector will be done through the following URL only "http://localhost:8083/connectors/mssql-connector" by hitting it on the Postman

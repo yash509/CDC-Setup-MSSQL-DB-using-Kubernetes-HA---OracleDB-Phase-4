@@ -1,0 +1,39 @@
+The below will be used through the Postman for making the connection to the Oracle DB as a "POST" method in the Postman
+URL = "http://localhost:8083/connectors"
+
+{
+  "name": "oracle-sink",
+  "config": {
+    "connector.class": "io.debezium.connector.jdbc.JdbcSinkConnector",
+ 
+    "topics.regex": "mssql.testdb.dbo.*",
+ 
+    "connection.url": "jdbc:oracle:thin:@//host.docker.internal:1521/ORCLPDB",
+    "connection.username": "root",
+    "connection.password": "Shivalik1234",
+    "connection.driver": "oracle.jdbc.OracleDriver",
+ 
+    "insert.mode": "upsert",
+    "auto.create": "false",
+    "auto.evolve": "true",
+ 
+    "delete.enabled": "true",
+    "primary.key.mode": "record_key",
+ 
+    "quote.identifiers": "false",
+ 
+    "transforms": "unwrap,route",
+ 
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.unwrap.delete.handling.mode": "none",
+    "transforms.unwrap.drop.tombstones": "false",
+ 
+    "transforms.route.type": "org.apache.kafka.connect.transforms.RegexRouter",
+    "transforms.route.regex": "mssql.testdb.dbo.(.*)",
+    "transforms.route.replacement": "$1",
+ 
+    "value.converter.schemas.enable": "true",
+    "key.converter.schemas.enable": "true"
+  }
+}
+ 
